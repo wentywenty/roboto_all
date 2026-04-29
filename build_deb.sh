@@ -19,22 +19,23 @@ fi
 PACKAGE="roboto-all"
 VERSION="1.1.0"
 ARCH="all"
-# We include the board in the directory/filename only for artifact distinction
-DEB_DIR="${PACKAGE}_${VERSION}_${BOARD}_${ARCH}"
+# Board suffix in version to avoid pool conflict (e.g. 1.1.0-robopi1)
+DEB_VERSION="${VERSION}-${BOARD}"
+DEB_DIR="${PACKAGE}_${DEB_VERSION}_${ARCH}"
 
-echo ">>> Building ${PACKAGE} ${VERSION} for ${BOARD} (Config: ${BOARD}.txt)"
+echo ">>> Building ${PACKAGE} ${DEB_VERSION} for ${BOARD} (Config: ${BOARD}.txt)"
 
 # 2. Read dependencies and format for Debian control file
 DEPENDS=$(grep -v '^$' "$CONFIG_FILE" | paste -sd "," - | sed 's/,/, /g')
 
 # Clean previous artifacts
-rm -rf "${DEB_DIR}" "${DEB_DIR}.deb"
+rm -rf "${DEB_DIR}" "${DEB_DIR}.deb" "${PACKAGE}_${DEB_VERSION}_${BOARD}.deb"
 mkdir -p "${DEB_DIR}/DEBIAN"
 
 # 3. Generate Control file
 cat > "${DEB_DIR}/DEBIAN/control" <<EOF
 Package: ${PACKAGE}
-Version: ${VERSION}
+Version: ${DEB_VERSION}
 Architecture: ${ARCH}
 Maintainer: RoboParty <2321901849@qq.com>
 Section: metapackages
@@ -52,6 +53,6 @@ echo ">>> Executing dpkg-deb build for ${BOARD}..."
 dpkg-deb --root-owner-group --build "${DEB_DIR}"
 
 # Rename the resulting .deb to include the board name for clarity
-mv "${DEB_DIR}.deb" "${PACKAGE}_${VERSION}_${BOARD}.deb"
+mv "${DEB_DIR}.deb" "${PACKAGE}_${DEB_VERSION}_${BOARD}.deb"
 
-echo ">>> Success! Generated ${PACKAGE}_${VERSION}_${BOARD}.deb"
+echo ">>> Success! Generated ${PACKAGE}_${DEB_VERSION}_${BOARD}.deb"
