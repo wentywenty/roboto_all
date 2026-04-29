@@ -32,10 +32,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: roboto-all-debs
-          path: roboto-all-*.deb,roboto-all_*.deb
+          path: "*.deb"
 
       - name: Release to GitHub
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: roboto-all-*.deb,roboto-all_*.deb
+          files: "*.deb"
