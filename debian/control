@@ -27,3 +27,11 @@ Provides: roboto-all
 Description: Metapackage for RoboParty robot software stack (robopi3 version)
  This package is tailored for standard RoboPi3 boards and installs all
  the necessary robot ROS 2 drivers, examples, models, and dependencies.
+
+Package: roboto-all-x86
+Architecture: all
+Depends: ${misc:Depends}, roboto-base (>= 1.0.0), roboto-bms (>= 1.0.0), roboto-imu (>= 1.0.0), roboto-motors (>= 1.0.0), roboto-example (>= 1.0.0), roboto-inference (>= 1.0.0)
+Provides: roboto-all
+Description: Metapackage for RoboParty robot software stack (x86 version)
+ This package is tailored for x86 simulation and development environments.
+ It installs high-level algorithms and tools, omitting hardware drivers.
