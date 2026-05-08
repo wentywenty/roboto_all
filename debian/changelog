@@ -1,11 +1,18 @@
+roboto-all (1.1.3-1) stable; urgency=medium
+
+  * Unified all hardware variants into a single universal metapackage
+  * Added missing roboto-deploy dependency
+
+ -- wentywenty <2321901849@qq.com>  Fri, 08 May 2026 11:00:00 +0800
+
+roboto-all (1.1.2-1) stable; urgency=medium
+
+  * Add roboto-description dependency to all architectures
+
+ -- wentywenty <2321901849@qq.com>  Fri, 08 May 2026 10:50:00 +0800
+
 roboto-all (1.1.1-1) stable; urgency=medium
 
   * Update standard deb package
 
  -- wentywenty <2321901849@qq.com>  Thu, 07 May 2026 17:10:18 +0800
-
-roboto-all (1.1.0-1) unstable; urgency=medium
-
-  * Transition metapackage to native multi-binary Debian configuration.
-
- -- Flora <2321901849@qq.com>  Thu, 07 May 2026 10:00:00 +0800

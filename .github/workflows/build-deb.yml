@@ -1,4 +1,4 @@
-name: Build All Metapackage
+name: Build Roboto All Deb Package
 
 on:
   push:
